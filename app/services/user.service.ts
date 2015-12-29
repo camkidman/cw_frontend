@@ -9,7 +9,6 @@ export class UserService {
     this.url = "api.calendarworkouts.dev/";
   }
   getUserDashboard() {
-    console.log("blah");
     return Promise.resolve(
       http.get("/users/1").map(res => res.json())
     )

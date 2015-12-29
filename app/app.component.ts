@@ -7,7 +7,7 @@ import {UserDashboardComponent} from './user-dashboard.component';
   template: `
     <h1>{{title}}</h1>
     <div><p>Test!</p></div>
-    <ul><li (click)="userFetch">Blah</li></ul>
+    <ul><li (click)="userFetch(event)">Blah</li></ul>
     <div class="user-info">
       <cw-user-dashboard [user]="user"></cw-user-dashboard>
   `
@@ -22,6 +22,7 @@ export class AppComponent {
   constructor(private _userService: UserService) { }
 
   userFetch() {
+    console.log("wtf");
     this._userService.getUserDashboard().then(user => this.user = user) 
   }
 }

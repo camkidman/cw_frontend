@@ -21,7 +21,6 @@ System.register(['angular2/core'], function(exports_1) {
                     this.url = "api.calendarworkouts.dev/";
                 }
                 UserService.prototype.getUserDashboard = function () {
-                    console.log("blah");
                     return Promise.resolve(http.get("/users/1").map(function (res) { return res.json(); }));
                 };
                 UserService = __decorate([
