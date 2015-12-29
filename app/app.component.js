@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './services/user.service', './user-dashboard.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,24 +8,37 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, user_service_1, user_dashboard_component_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
+            },
+            function (user_dashboard_component_1_1) {
+                user_dashboard_component_1 = user_dashboard_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(_userService) {
+                    this._userService = _userService;
                     this.title = "Calendar Workouts";
                 }
+                AppComponent.prototype.userFetch = function () {
+                    var _this = this;
+                    this._userService.getUserDashboard().then(function (user) { return _this.user = user; });
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'cw-api-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <div><p>Test!</p></div>\n  "
+                        template: "\n    <h1>{{title}}</h1>\n    <div><p>Test!</p></div>\n    <ul><li (click)=\"userFetch\">Blah</li></ul>\n    <div class=\"user-info\">\n      <cw-user-dashboard></cw-user-dashboard>\n  ",
+                        directives: [user_dashboard_component_1.UserDashboardComponent],
+                        providers: [user_service_1.UserService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [user_service_1.UserService])
                 ], AppComponent);
                 return AppComponent;
             })();

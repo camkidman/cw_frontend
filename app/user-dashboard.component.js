@@ -9,31 +9,27 @@ System.register(['angular2/core'], function(exports_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var UserService;
+    var UserDashboardComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            UserService = (function () {
-                function UserService() {
-                    this.url = "api.calendarworkouts.dev/";
+            UserDashboardComponent = (function () {
+                function UserDashboardComponent() {
                 }
-                UserService.prototype.getUserDashboard = function () {
-                    var _this = this;
-                    return Promise.resolve(http.get("/users/1").subscribe(function (res) {
-                        _this.people = res.json();
-                    }));
-                };
-                UserService = __decorate([
-                    core_1.Injectable(), 
+                UserDashboardComponent = __decorate([
+                    core_1.Component({
+                        selector: 'cw-user-dashboard',
+                        template: "\n    <div>stuff</div>\n  "
+                    }), 
                     __metadata('design:paramtypes', [])
-                ], UserService);
-                return UserService;
+                ], UserDashboardComponent);
+                return UserDashboardComponent;
             })();
-            exports_1("UserService", UserService);
+            exports_1("UserDashboardComponent", UserDashboardComponent);
         }
     }
 });
-//# sourceMappingURL=user.service.js.map
+//# sourceMappingURL=user-dashboard.component.js.map
