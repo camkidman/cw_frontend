@@ -9,7 +9,7 @@ import {UserDashboardComponent} from './user-dashboard.component';
     <div><p>Test!</p></div>
     <ul><li (click)="userFetch">Blah</li></ul>
     <div class="user-info">
-      <cw-user-dashboard></cw-user-dashboard>
+      <cw-user-dashboard [user]="user"></cw-user-dashboard>
   `
   directives: [UserDashboardComponent],
   providers: [UserService]
@@ -17,6 +17,7 @@ import {UserDashboardComponent} from './user-dashboard.component';
 
 export class AppComponent {
   public title = "Calendar Workouts";
+  public user: Object;
 
   constructor(private _userService: UserService) { }
 

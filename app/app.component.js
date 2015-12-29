@@ -34,7 +34,7 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'cw-api-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <div><p>Test!</p></div>\n    <ul><li (click)=\"userFetch\">Blah</li></ul>\n    <div class=\"user-info\">\n      <cw-user-dashboard></cw-user-dashboard>\n  ",
+                        template: "\n    <h1>{{title}}</h1>\n    <div><p>Test!</p></div>\n    <ul><li (click)=\"userFetch\">Blah</li></ul>\n    <div class=\"user-info\">\n      <cw-user-dashboard [user]=\"user\"></cw-user-dashboard>\n  ",
                         directives: [user_dashboard_component_1.UserDashboardComponent],
                         providers: [user_service_1.UserService]
                     }), 
