@@ -21,11 +21,14 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1) {
         execute: function() {
             UserService = (function () {
                 function UserService(http) {
-                    this.url = "api.calendarworkouts.dev/";
+                    this.url = "http://api.calendarworkouts.dev/";
                     this.http = http;
                 }
                 UserService.prototype.getUserDashboard = function () {
-                    return Promise.resolve(this.http.get(this.url + "/users/1").map(function (res) { return res.json(); }));
+                    return this.http.get(this.url + "users/1/dashboard")
+                        .map(function (responseData) {
+                        return responseData.json();
+                    });
                 };
                 UserService = __decorate([
                     core_1.Injectable(), 

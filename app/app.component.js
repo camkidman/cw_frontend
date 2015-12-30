@@ -30,7 +30,7 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
                 AppComponent.prototype.userFetch = function () {
                     var _this = this;
                     console.log("wtf");
-                    this._userService.getUserDashboard().then(function (user) { return _this.user = user; });
+                    this._userService.getUserDashboard().subscribe(function (res) { return _this.user = res; });
                 };
                 AppComponent = __decorate([
                     core_1.Component({

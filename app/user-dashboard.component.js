@@ -22,7 +22,7 @@ System.register(['angular2/core'], function(exports_1) {
                 UserDashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'cw-user-dashboard',
-                        template: "\n    <div>{{user}}</div>\n  ",
+                        template: "\n    <div>{{user | json}}</div>\n  ",
                         inputs: ['user']
                     }), 
                     __metadata('design:paramtypes', [])

@@ -5,13 +5,14 @@ import {Http, Headers, HTTP_PROVIDERS} from 'angular2/http';
 export class UserService {
   url: string;
   constructor(http: Http) {
-    this.url = "api.calendarworkouts.dev/";
+    this.url = "http://api.calendarworkouts.dev/";
     this.http = http
   }
 
   getUserDashboard() {
-    return Promise.resolve(
-      this.http.get(this.url + "/users/1").map(res => res.json())
-    )
+    return this.http.get(this.url + "users/1/dashboard")
+      .map((responseData) => {
+        return responseData.json();
+       });
   }
 }

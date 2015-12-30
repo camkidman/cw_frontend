@@ -23,6 +23,6 @@ export class AppComponent {
 
   userFetch() {
     console.log("wtf");
-    this._userService.getUserDashboard().then(user => this.user = user) 
+    this._userService.getUserDashboard().subscribe(res => this.user = res);
   }
 }
