@@ -1,16 +1,17 @@
 import {Injectable} from 'angular2/core';
-import {HTTP_PROVIDERS, Http} from 'angular2/http';
+import {Http, Headers, HTTP_PROVIDERS} from 'angular2/http';
 
 @Injectable()
-
 export class UserService {
   url: string;
-  constructor() {
+  constructor(http: Http) {
     this.url = "api.calendarworkouts.dev/";
+    this.http = http
   }
+
   getUserDashboard() {
     return Promise.resolve(
-      http.get("/users/1").map(res => res.json())
+      this.http.get(this.url + "/users/1").map(res => res.json())
     )
   }
 }
