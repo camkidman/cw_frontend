@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {UserService} from './services/user.service';
+import {LoginComponent} from './login.component';
 import {UserDashboardComponent} from './user-dashboard.component';
 
 @Component({
@@ -10,8 +11,10 @@ import {UserDashboardComponent} from './user-dashboard.component';
     <ul><li (click)="userFetch(event)">Blah</li></ul>
     <div class="user-info">
       <cw-user-dashboard [user]="user"></cw-user-dashboard>
+    </div>
+      <app-login></app-login>
   `
-  directives: [UserDashboardComponent],
+  directives: [UserDashboardComponent, LoginComponent],
   providers: [UserService]
 })
 

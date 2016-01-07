@@ -1,4 +1,4 @@
-System.register(['angular2/core', './services/user.service', './user-dashboard.component'], function(exports_1) {
+System.register(['angular2/core', './services/user.service', './login.component', './user-dashboard.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_service_1, user_dashboard_component_1;
+    var core_1, user_service_1, login_component_1, user_dashboard_component_1;
     var AppComponent;
     return {
         setters:[
@@ -17,6 +17,9 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
             },
             function (user_service_1_1) {
                 user_service_1 = user_service_1_1;
+            },
+            function (login_component_1_1) {
+                login_component_1 = login_component_1_1;
             },
             function (user_dashboard_component_1_1) {
                 user_dashboard_component_1 = user_dashboard_component_1_1;
@@ -35,8 +38,8 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'cw-api-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <div><p>Test!</p></div>\n    <ul><li (click)=\"userFetch(event)\">Blah</li></ul>\n    <div class=\"user-info\">\n      <cw-user-dashboard [user]=\"user\"></cw-user-dashboard>\n  ",
-                        directives: [user_dashboard_component_1.UserDashboardComponent],
+                        template: "\n    <h1>{{title}}</h1>\n    <div><p>Test!</p></div>\n    <ul><li (click)=\"userFetch(event)\">Blah</li></ul>\n    <div class=\"user-info\">\n      <cw-user-dashboard [user]=\"user\"></cw-user-dashboard>\n    </div>\n      <app-login></app-login>\n  ",
+                        directives: [user_dashboard_component_1.UserDashboardComponent, login_component_1.LoginComponent],
                         providers: [user_service_1.UserService]
                     }), 
                     __metadata('design:paramtypes', [user_service_1.UserService])
