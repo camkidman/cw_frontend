@@ -7,18 +7,9 @@
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="node_modules/angular2/bundles/http.js"></script>
+    <script src="config.js"></script>
+    <script>System.import('app/boot').then(null, console.error.bind(console));</script>
 
-    <script>
-      System.config({
-        packages: {
-          app: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
-        }
-      });
-      System.import('app/boot').then(null, console.error.bind(console));
-    </script>
   </head>
   <body>
     <cw-api-app>Loading...<cw-api-app>

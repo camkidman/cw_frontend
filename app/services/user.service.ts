@@ -4,7 +4,7 @@ import {Http, Headers, HTTP_PROVIDERS} from 'angular2/http';
 @Injectable()
 export class UserService {
   url: string;
-  constructor(http: Http) {
+  constructor(private http: Http) {
     this.url = "http://api.calendarworkouts.dev/";
     this.http = http
   }

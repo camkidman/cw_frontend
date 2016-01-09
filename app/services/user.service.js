@@ -21,6 +21,7 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1) {
         execute: function() {
             UserService = (function () {
                 function UserService(http) {
+                    this.http = http;
                     this.url = "http://api.calendarworkouts.dev/";
                     this.http = http;
                 }

@@ -4,7 +4,7 @@ import {Component} from 'angular2/core';
   selector: 'cw-user-dashboard',
   template: `
     <div>{{user | json}}</div>
-  `
+  `,
   inputs: ['user']
 })
 

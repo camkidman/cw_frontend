@@ -1,1 +1,1 @@
-{"version":3,"file":"user.component.js","sourceRoot":"","sources":["user.component.ts"],"names":[],"mappings":";;;;YAEY"}
+{"version":3,"file":"user.component.js","sourceRoot":"","sources":["user.component.ts"],"names":["UserComponent","UserComponent.constructor"],"mappings":";;;;;;;;;;;;;;;;;;YAEA;gBAAAA;gBAE4BC,CAACA;gBAF7BD;oBAACA,gBAASA,CAACA,EAAEA,CAACA;;kCAEeA;gBAADA,oBAACA;YAADA,CAACA,AAF7B,IAE6B;YAF7B,yCAE6B,CAAA"}

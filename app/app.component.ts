@@ -10,7 +10,7 @@ import {UserDashboardComponent} from './user-dashboard.component';
     <ul><li (click)="userFetch(event)">Blah</li></ul>
     <div class="user-info">
       <cw-user-dashboard [user]="user"></cw-user-dashboard>
-  `
+  `,
   directives: [UserDashboardComponent],
   providers: [UserService]
 })
