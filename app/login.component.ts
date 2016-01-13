@@ -4,6 +4,17 @@ import {AuthHttp, AuthConfig} from 'angular2-jwt';
 
 
 @Component({
+    selector: 'login-links',
+    template: `
+    <div *ngIf="!loggedIn()">
+        <button (click)="login()">Login</button>
+        <span>Or...</span>
+        <div>
+
+        </div>
+    </div>
+    <button *ngIf="loggedIn()" (click)="logout()">Logout</button>
+    `
 
 })
 
@@ -37,5 +48,17 @@ export class LoginComponent {
 
     getCwTokenName(): string {
         return this.jwtHelper.localStorage.getItem('client');
+    }
+
+    loggedIn() {
+        return tokenNotExpired();
+    }
+
+    logout() {
+
+    }
+
+    login() {
+
     }
 }

@@ -39,8 +39,18 @@ System.register(['angular2/core'], function(exports_1) {
                 LoginComponent.prototype.getCwTokenName = function () {
                     return this.jwtHelper.localStorage.getItem('client');
                 };
+                LoginComponent.prototype.loggedIn = function () {
+                    return tokenNotExpired();
+                };
+                LoginComponent.prototype.logout = function () {
+                };
+                LoginComponent.prototype.login = function () {
+                };
                 LoginComponent = __decorate([
-                    core_1.Component({}), 
+                    core_1.Component({
+                        selector: 'login-links',
+                        template: "\n    <div *ngIf=\"!loggedIn()\">\n        <button (click)=\"login()\">Login</button>\n        <span>Or...</span>\n        <div>\n\n        </div>\n    </div>\n    <button *ngIf=\"loggedIn()\" (click)=\"logout()\">Logout</button>\n    "
+                    }), 
                     __metadata('design:paramtypes', [])
                 ], LoginComponent);
                 return LoginComponent;

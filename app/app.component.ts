@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {UserService} from './services/user.service';
 import {UserDashboardComponent} from './user-dashboard.component';
+import {LoginComponent} from './login.component';
 
 @Component({
   selector: 'cw-api-app',
@@ -10,8 +11,10 @@ import {UserDashboardComponent} from './user-dashboard.component';
     <ul><li (click)="userFetch(event)">Blah</li></ul>
     <div class="user-info">
       <cw-user-dashboard [user]="user"></cw-user-dashboard>
+    </div>
+    <login-links></login-links>
   `,
-  directives: [UserDashboardComponent],
+  directives: [UserDashboardComponent, LoginComponent],
   providers: [UserService]
 })
 
