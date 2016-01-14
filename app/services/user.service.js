@@ -64,6 +64,7 @@ System.register(['angular2/core', 'angular2/router', "./api.service", 'rxjs/add/
                             window.Materialize.toast(response.message, 4000, 'loginError');
                         }
                         else {
+                            console.log(response);
                             _this.storeUserCredentials(response.token);
                         }
                     });

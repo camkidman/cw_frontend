@@ -8,7 +8,7 @@ export class APIService {
     baseUrl:string;
 
     constructor(public http:HttpClient) {
-        this.baseUrl = "api.calendarworkouts.com/v1";
+        this.baseUrl = "api.calendarworkouts.dev/v1";
         this.http = http;
     }
     setHeaders(token) {
@@ -19,7 +19,7 @@ export class APIService {
         return new Promise((resolve, reject) => {
             let creds = {username: username, pw: password};
 
-            this.http.post(`${this.baseUrl}/login`, JSON.stringify(creds))
+            this.http.post(`${this.baseUrl}/auth/sign_in`, JSON.stringify(creds))
                 .map(res => res.json())
                 .subscribe((data, err) => {
                     if (err) {

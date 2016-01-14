@@ -23,7 +23,7 @@ System.register(["angular2/core", 'rxjs/add/operator/map', "./http.service"], fu
             APIService = (function () {
                 function APIService(http) {
                     this.http = http;
-                    this.baseUrl = "api.calendarworkouts.com/v1";
+                    this.baseUrl = "api.calendarworkouts.dev/v1";
                     this.http = http;
                 }
                 APIService.prototype.setHeaders = function (token) {
@@ -34,7 +34,7 @@ System.register(["angular2/core", 'rxjs/add/operator/map', "./http.service"], fu
                     //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
                     return new Promise(function (resolve, reject) {
                         var creds = { username: username, pw: password };
-                        _this.http.post(_this.baseUrl + "/login", JSON.stringify(creds))
+                        _this.http.post(_this.baseUrl + "/auth/sign_in", JSON.stringify(creds))
                             .map(function (res) { return res.json(); })
                             .subscribe(function (data, err) {
                             if (err) {

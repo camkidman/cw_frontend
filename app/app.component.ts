@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {UserService} from './services/user.service';
 import {UserDashboardComponent} from './user-dashboard.component';
 import {LoginComponent} from './login.component';
+import {APIService} from './services/api.service';
 
 @Component({
   selector: 'cw-api-app',
@@ -15,7 +16,7 @@ import {LoginComponent} from './login.component';
     <login-links></login-links>
   `,
   directives: [UserDashboardComponent, LoginComponent],
-  providers: [UserService]
+  providers: [UserService, APIService]
 })
 
 export class AppComponent {
@@ -24,8 +25,8 @@ export class AppComponent {
 
   constructor(private _userService: UserService) { }
 
-  userFetch() {
-    console.log("wtf");
-    this._userService.getUserDashboard().subscribe(res => this.user = res);
-  }
+  //userFetch() {
+  //  console.log("wtf");
+  //  this._userService.getUserDashboard().subscribe(res => this.user = res);
+  //}
 }
