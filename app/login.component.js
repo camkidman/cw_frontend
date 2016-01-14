@@ -9,7 +9,7 @@ System.register(['angular2/core', './services/api.service'], function(exports_1)
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, api_service_1;
-    var LoginComponent;
+    var LoginFormComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -19,22 +19,22 @@ System.register(['angular2/core', './services/api.service'], function(exports_1)
                 api_service_1 = api_service_1_1;
             }],
         execute: function() {
-            LoginComponent = (function () {
-                function LoginComponent(apiService) {
+            LoginFormComponent = (function () {
+                function LoginFormComponent(apiService) {
                     this.apiService = apiService;
                 }
-                LoginComponent = __decorate([
+                LoginFormComponent = __decorate([
                     core_1.Component({
-                        selector: 'login-links',
-                        template: "\n    <div *ngIf=\"!loggedIn()\">\n        <button (click)=\"apiService.login()\">Login</button>\n        <span>Or...</span>\n        <div>\n\n        </div>\n    </div>\n    <button *ngIf=\"loggedIn()\" (click)=\"logout()\">Logout</button>\n    ",
+                        selector: 'login-form',
+                        templateUrl: './templates/forms/login-form.component.html',
                         bindings: [api_service_1.ApiService],
                     }), 
                     __metadata('design:paramtypes', [(typeof (_a = typeof api_service_1.ApiService !== 'undefined' && api_service_1.ApiService) === 'function' && _a) || Object])
-                ], LoginComponent);
-                return LoginComponent;
+                ], LoginFormComponent);
+                return LoginFormComponent;
                 var _a;
             })();
-            exports_1("LoginComponent", LoginComponent);
+            exports_1("LoginFormComponent", LoginFormComponent);
         }
     }
 });

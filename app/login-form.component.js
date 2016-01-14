@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './services/api.service', './services/http.service', "angular2/common"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,34 +8,40 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, api_service_1, http_service_1, common_1;
     var LoginFormComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (api_service_1_1) {
+                api_service_1 = api_service_1_1;
+            },
+            function (http_service_1_1) {
+                http_service_1 = http_service_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             }],
         execute: function() {
             LoginFormComponent = (function () {
-                function LoginFormComponent() {
-                    this.powers = ['Really Smart', 'Super Flexible',
-                        'Super Hot', 'Weather Changer'];
-                    this.model = new Hero(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
-                    this.submitted = false;
+                function LoginFormComponent(apiService, fb) {
+                    this.apiService = apiService;
+                    this.form = fb.group({ "prop1": ["", common_1.Validators.required] });
                 }
-                LoginFormComponent.prototype.onSubmit = function () { this.submitted = true; };
-                Object.defineProperty(LoginFormComponent.prototype, "diagnostic", {
-                    // TODO: Remove this when we're done
-                    get: function () { return JSON.stringify(this.model); },
-                    enumerable: true,
-                    configurable: true
-                });
+                LoginFormComponent.prototype.onSubmit = function (data) {
+                    console.log(data);
+                };
                 LoginFormComponent = __decorate([
                     core_1.Component({
                         selector: 'login-form',
-                        templateUrl: 'app/templates/forms/login-form.component.html'
+                        templateUrl: 'app/templates/forms/login-form.component.html',
+                        bindings: [api_service_1.APIService],
+                        providers: [http_service_1.HttpClient, api_service_1.APIService],
+                        directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [api_service_1.APIService, common_1.FormBuilder])
                 ], LoginFormComponent);
                 return LoginFormComponent;
             })();

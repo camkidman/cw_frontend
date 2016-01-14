@@ -1,8 +1,9 @@
 import {Component} from 'angular2/core';
 import {UserService} from './services/user.service';
 import {UserDashboardComponent} from './user-dashboard.component';
-import {LoginComponent} from './login.component';
+import {LoginFormComponent} from './login-form.component';
 import {APIService} from './services/api.service';
+import {HttpClient} from "./services/http.service";
 
 @Component({
   selector: 'cw-api-app',
@@ -13,10 +14,10 @@ import {APIService} from './services/api.service';
     <div class="user-info">
       <cw-user-dashboard [user]="user"></cw-user-dashboard>
     </div>
-    <login-links></login-links>
+    <login-form></login-form>
   `,
-  directives: [UserDashboardComponent, LoginComponent],
-  providers: [UserService, APIService]
+  directives: [UserDashboardComponent, LoginFormComponent],
+  providers: [UserService, APIService, HttpClient]
 })
 
 export class AppComponent {
