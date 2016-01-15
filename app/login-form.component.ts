@@ -23,7 +23,9 @@ export class LoginFormComponent {
     }
 
     onSubmit(data) {
-        this.data = data;
+        //this.data = data;
+        this.data = JSON.stringify(data, null, 2);
         console.log(this.data);
+        this.apiService.login(this.data["email"], this.data["password"]);
     }
 }
