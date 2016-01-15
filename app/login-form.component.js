@@ -31,13 +31,13 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                     this.form = fb.group({ "prop1": ["", common_1.Validators.required] });
                 }
                 LoginFormComponent.prototype.onSubmit = function (data) {
-                    console.log(data);
+                    this.data = data;
+                    console.log(this.data);
                 };
                 LoginFormComponent = __decorate([
                     core_1.Component({
                         selector: 'login-form',
                         templateUrl: 'app/templates/forms/login-form.component.html',
-                        bindings: [api_service_1.APIService],
                         providers: [http_service_1.HttpClient, api_service_1.APIService],
                         directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES]
                     }), 

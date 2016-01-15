@@ -10,10 +10,8 @@ import {FORM_DIRECTIVES, CORE_DIRECTIVES, FormBuilder, Validators} from "angular
 @Component({
     selector: 'login-form',
     templateUrl: 'app/templates/forms/login-form.component.html',
-    bindings: [APIService],
     providers: [HttpClient, APIService],
     directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
-
 })
 
 export class LoginFormComponent {
@@ -25,6 +23,7 @@ export class LoginFormComponent {
     }
 
     onSubmit(data) {
-        console.log(data);
+        this.data = data;
+        console.log(this.data);
     }
 }
