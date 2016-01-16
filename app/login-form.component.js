@@ -32,9 +32,7 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                 }
                 LoginFormComponent.prototype.onSubmit = function (data) {
                     //this.data = data;
-                    this.data = JSON.stringify(data, null, 2);
-                    console.log(this.data);
-                    this.apiService.login(this.data["email"], this.data["password"]);
+                    this.apiService.login(data.email, data.password, data.passwordConfirmation);
                 };
                 LoginFormComponent = __decorate([
                     core_1.Component({

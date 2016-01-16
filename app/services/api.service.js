@@ -23,22 +23,21 @@ System.register(["angular2/core", 'rxjs/add/operator/map', "./http.service"], fu
             APIService = (function () {
                 function APIService(http) {
                     this.http = http;
-                    this.baseUrl = "http://localhost:3008";
+                    this.baseUrl = "http://localhost:3009";
                     this.http = http;
                 }
                 APIService.prototype.setHeaders = function (token) {
                     this.http.setToken(token);
                 };
-                APIService.prototype.login = function (email, password) {
+                APIService.prototype.login = function (email, password, passwordConfirmation) {
                     var _this = this;
                     //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
                     return new Promise(function (resolve, reject) {
-                        var creds = { email: email, pw: password };
-                        _this.http.post(_this.baseUrl + "/auth/sign_in", JSON.stringify(creds))
+                        var creds = { email: email, password: password, password_confirmation: passwordConfirmation, confirm_success_url: "https://google.com" };
+                        _this.http.post(_this.baseUrl + "/auth", JSON.stringify(creds))
                             .map(function (res) { return res.json(); })
                             .subscribe(function (data, err) {
                             if (err) {
-                                console.log(data);
                                 reject(err);
                             }
                             else {
