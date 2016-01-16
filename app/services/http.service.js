@@ -41,6 +41,9 @@ System.register(['angular2/http', "angular2/core"], function(exports_1) {
                 HttpClient.prototype.post = function (url, data) {
                     return this.http.post(url, data, { headers: this.headers });
                 };
+                HttpClient.prototype.patch = function (url, data) {
+                    return this.http.patch(url, data, { headers: this.headers });
+                };
                 HttpClient = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])

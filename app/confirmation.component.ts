@@ -13,6 +13,7 @@ import {Router, RouteParams} from 'angular2/router';
 export class ConfirmationComponent implements OnInit {
     data: string;
     confirmationToken: string;
+    redirectURL: string;
 
     constructor(private _router:Router, private _routeParams:RouteParams, public http:HttpClient, public apiService:APIService) {
         this.http = http;
@@ -21,12 +22,13 @@ export class ConfirmationComponent implements OnInit {
 
     ngOnInit() {
         this.confirmationToken = this._routeParams.get("confirmation_token");
-        this.fireConfirmation();
+        this.redirectURL = this._routeParams.get("redirect_url");
+        this.fireConfirmation(this.confirmationToken, this.redirectURL);
     }
 
-    fireConfirmation() {
+    fireConfirmation(confirmationToken, redirectURL) {
         return new Promise((resolve, reject) => {
-            this.http.get(`${this.apiService.baseUrl}/auth/confirmation`, this.confirmationToken)
+            this.http.get(`${this.apiService.baseUrl}/auth/confirmation?config=default&confirmation_token=${confirmationToken}&redirect_url=${redirectURL}`)
             .map(res => res.json())
             .subscribe((data, err) => {
                 if (err) {

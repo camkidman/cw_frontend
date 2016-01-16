@@ -36,12 +36,13 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                 }
                 ConfirmationComponent.prototype.ngOnInit = function () {
                     this.confirmationToken = this._routeParams.get("confirmation_token");
-                    this.fireConfirmation();
+                    this.redirectURL = this._routeParams.get("redirect_url");
+                    this.fireConfirmation(this.confirmationToken, this.redirectURL);
                 };
-                ConfirmationComponent.prototype.fireConfirmation = function () {
+                ConfirmationComponent.prototype.fireConfirmation = function (confirmationToken, redirectURL) {
                     var _this = this;
                     return new Promise(function (resolve, reject) {
-                        _this.http.get(_this.apiService.baseUrl + "/auth/confirmation", _this.confirmationToken)
+                        _this.http.get(_this.apiService.baseUrl + "/auth/confirmation?config=default&confirmation_token=" + confirmationToken + "&redirect_url=" + redirectURL)
                             .map(function (res) { return res.json(); })
                             .subscribe(function (data, err) {
                             if (err) {

@@ -24,4 +24,7 @@ export class HttpClient {
     post(url, data) {
         return this.http.post(url, data, {headers: this.headers});
     }
+    patch(url, data) {
+        return this.http.patch(url, data, {headers: this.headers});
+    }
 }
