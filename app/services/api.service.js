@@ -29,12 +29,30 @@ System.register(["angular2/core", 'rxjs/add/operator/map', "./http.service"], fu
                 APIService.prototype.setHeaders = function (token) {
                     this.http.setToken(token);
                 };
-                APIService.prototype.login = function (email, password, passwordConfirmation) {
+                APIService.prototype.register = function (email, password, passwordConfirmation) {
                     var _this = this;
                     //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
                     return new Promise(function (resolve, reject) {
-                        var creds = { email: email, password: password, password_confirmation: passwordConfirmation, confirm_success_url: "https://google.com" };
+                        var creds = { email: email, password: password, password_confirmation: passwordConfirmation, confirm_success_url: "localhost:3000/confirmation" };
                         _this.http.post(_this.baseUrl + "/auth", JSON.stringify(creds))
+                            .map(function (res) { return res.json(); })
+                            .subscribe(function (data, err) {
+                            if (err) {
+                                reject(err);
+                            }
+                            else {
+                                console.log(data);
+                                resolve(data);
+                            }
+                        });
+                    });
+                };
+                APIService.prototype.login = function (email, password) {
+                    var _this = this;
+                    //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
+                    return new Promise(function (resolve, reject) {
+                        var creds = { email: email, password: password };
+                        _this.http.post(_this.baseUrl + "/auth/sign_in", JSON.stringify(creds))
                             .map(function (res) { return res.json(); })
                             .subscribe(function (data, err) {
                             if (err) {

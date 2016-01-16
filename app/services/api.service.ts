@@ -17,12 +17,29 @@ export class APIService {
     setHeaders(token) {
         this.http.setToken(token);
     }
-    login(email, password, passwordConfirmation) {
+    register(email, password, passwordConfirmation) {
         //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
         return new Promise((resolve, reject) => {
-            let creds = {email: email, password: password, password_confirmation: passwordConfirmation, confirm_success_url: "https://google.com"};
+            let creds = {email: email, password: password, password_confirmation: passwordConfirmation, confirm_success_url: "localhost:3000/confirmation"};
 
             this.http.post(`${this.baseUrl}/auth`, JSON.stringify(creds))
+                .map(res => res.json())
+                .subscribe((data, err) => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        console.log(data);
+                        resolve(data);
+                    }
+                })
+        })
+    }
+    login(email, password) {
+        //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
+        return new Promise((resolve, reject) => {
+            let creds = {email: email, password: password};
+
+            this.http.post(`${this.baseUrl}/auth/sign_in`, JSON.stringify(creds))
                 .map(res => res.json())
                 .subscribe((data, err) => {
                     if (err) {

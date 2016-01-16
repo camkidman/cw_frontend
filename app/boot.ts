@@ -6,9 +6,10 @@ import {HttpClient} from './services/http.service';
 import {LoginFormComponent} from './login-form.component';
 import 'rxjs/add/operator/map'
 import {provide} from "angular2/core";
+import {ROUTER_PROVIDERS} from 'angular2/router';
 
 bootstrap(AppComponent, [
-    HTTP_PROVIDERS, HttpClient
+    HTTP_PROVIDERS, HttpClient, ROUTER_PROVIDERS
     //provide(AuthConfig, { useFactory: () => {
     //    return new AuthConfig({
     //        headerName: authHeaderName,

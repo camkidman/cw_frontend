@@ -1,4 +1,4 @@
-System.register(['angular2/core', './services/user.service', './user-dashboard.component', './login-form.component', './services/api.service', "./services/http.service"], function(exports_1) {
+System.register(['angular2/core', './services/user.service', './user-dashboard.component', './login-form.component', './services/api.service', "./services/http.service", "angular2/router", './registration.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_service_1, user_dashboard_component_1, login_form_component_1, api_service_1, http_service_1;
+    var core_1, user_service_1, user_dashboard_component_1, login_form_component_1, api_service_1, http_service_1, router_1, registration_component_1;
     var AppComponent;
     return {
         setters:[
@@ -29,6 +29,12 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
             },
             function (http_service_1_1) {
                 http_service_1 = http_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (registration_component_1_1) {
+                registration_component_1 = registration_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -39,10 +45,14 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'cw-api-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <div><p>Test!</p></div>\n    <ul><li (click)=\"userFetch(event)\">Blah</li></ul>\n    <div class=\"user-info\">\n      <cw-user-dashboard [user]=\"user\"></cw-user-dashboard>\n    </div>\n    <login-form></login-form>\n  ",
-                        directives: [user_dashboard_component_1.UserDashboardComponent, login_form_component_1.LoginFormComponent],
+                        template: "\n    <h1>{{title}}</h1>\n    <nav>\n      <a [routerLink]=\"['SignUp']\">Register</a>\n      <a [routerLink]=\"['Login']\">Log In</a>\n    </nav>\n    <router-outlet></router-outlet>\n    <ul><li (click)=\"userFetch(event)\">Blah</li></ul>\n    <div class=\"user-info\">\n      <cw-user-dashboard [user]=\"user\"></cw-user-dashboard>\n    </div>\n  ",
+                        directives: [user_dashboard_component_1.UserDashboardComponent, login_form_component_1.LoginFormComponent, registration_component_1.RegistrationComponent, router_1.ROUTER_DIRECTIVES],
                         providers: [user_service_1.UserService, api_service_1.APIService, http_service_1.HttpClient]
-                    }), 
+                    }),
+                    router_1.RouteConfig([
+                        { path: '/sign_up', name: 'SignUp', component: registration_component_1.RegistrationComponent },
+                        { path: '/login', name: 'Login', component: login_form_component_1.LoginFormComponent }
+                    ]), 
                     __metadata('design:paramtypes', [user_service_1.UserService])
                 ], AppComponent);
                 return AppComponent;
