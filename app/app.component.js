@@ -1,4 +1,4 @@
-System.register(['angular2/core', './services/user.service', './user-dashboard.component', './login-form.component', './services/api.service', "./services/http.service", "angular2/router", './registration.component'], function(exports_1) {
+System.register(['angular2/core', './services/user.service', './user-dashboard.component', './login-form.component', './services/api.service', "./services/http.service", "angular2/router", './registration.component', './confirmation.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_service_1, user_dashboard_component_1, login_form_component_1, api_service_1, http_service_1, router_1, registration_component_1;
+    var core_1, user_service_1, user_dashboard_component_1, login_form_component_1, api_service_1, http_service_1, router_1, registration_component_1, confirmation_component_1;
     var AppComponent;
     return {
         setters:[
@@ -35,6 +35,9 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
             },
             function (registration_component_1_1) {
                 registration_component_1 = registration_component_1_1;
+            },
+            function (confirmation_component_1_1) {
+                confirmation_component_1 = confirmation_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -51,7 +54,8 @@ System.register(['angular2/core', './services/user.service', './user-dashboard.c
                     }),
                     router_1.RouteConfig([
                         { path: '/sign_up', name: 'SignUp', component: registration_component_1.RegistrationComponent },
-                        { path: '/login', name: 'Login', component: login_form_component_1.LoginFormComponent }
+                        { path: '/login', name: 'Login', component: login_form_component_1.LoginFormComponent },
+                        { path: '/confirm_registration', name: 'ConfirmRegistration', component: confirmation_component_1.ConfirmationComponent }
                     ]), 
                     __metadata('design:paramtypes', [user_service_1.UserService])
                 ], AppComponent);

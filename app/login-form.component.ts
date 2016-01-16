@@ -23,7 +23,6 @@ export class LoginFormComponent {
     }
 
     onSubmit(data) {
-        //this.data = data;
         this.apiService.login(data.email, data.password, data.passwordConfirmation);
     }
 }

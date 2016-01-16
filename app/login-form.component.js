@@ -31,7 +31,6 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                     this.form = fb.group({ "prop1": ["", common_1.Validators.required] });
                 }
                 LoginFormComponent.prototype.onSubmit = function (data) {
-                    //this.data = data;
                     this.apiService.login(data.email, data.password, data.passwordConfirmation);
                 };
                 LoginFormComponent = __decorate([

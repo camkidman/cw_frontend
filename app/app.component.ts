@@ -6,6 +6,7 @@ import {APIService} from './services/api.service';
 import {HttpClient} from "./services/http.service";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {RegistrationComponent} from './registration.component';
+import {ConfirmationComponent} from './confirmation.component';
 
 @Component({
   selector: 'cw-api-app',
@@ -27,7 +28,8 @@ import {RegistrationComponent} from './registration.component';
 
 @RouteConfig([
   {path:'/sign_up', name: 'SignUp', component: RegistrationComponent},
-  {path:'/login', name: 'Login', component: LoginFormComponent}
+  {path:'/login', name: 'Login', component: LoginFormComponent},
+    {path:'/confirm_registration', name: 'ConfirmRegistration', component: ConfirmationComponent}
 ])
 
 export class AppComponent {
