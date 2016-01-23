@@ -26,25 +26,13 @@ System.register(["angular2/core", 'rxjs/add/operator/map', "./http.service"], fu
                     this.baseUrl = "http://localhost:3009";
                     this.http = http;
                 }
-                APIService.prototype.setHeaders = function (token) {
-                    this.http.setToken(token);
-                };
                 APIService.prototype.register = function (email, password, passwordConfirmation) {
                     var _this = this;
                     //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
                     return new Promise(function (resolve, reject) {
-                        var creds = { email: email, password: password, password_confirmation: passwordConfirmation, confirm_success_url: "localhost:3000/confirmation" };
+                        var creds = { email: email, password: password, password_confirmation: passwordConfirmation };
                         _this.http.post(_this.baseUrl + "/auth", JSON.stringify(creds))
-                            .map(function (res) { return res.json(); })
-                            .subscribe(function (data, err) {
-                            if (err) {
-                                reject(err);
-                            }
-                            else {
-                                console.log(data);
-                                resolve(data);
-                            }
-                        });
+                            .subscribe(function (data) { return console.log(data); }, function (err) { return reject(err); }, function () { return console.log("woot"); });
                     });
                 };
                 APIService.prototype.login = function (email, password) {
@@ -53,16 +41,12 @@ System.register(["angular2/core", 'rxjs/add/operator/map', "./http.service"], fu
                     return new Promise(function (resolve, reject) {
                         var creds = { email: email, password: password };
                         _this.http.post(_this.baseUrl + "/auth/sign_in", JSON.stringify(creds))
-                            .map(function (res) { return res.json(); })
-                            .subscribe(function (data, err) {
-                            if (err) {
-                                reject(err);
-                            }
-                            else {
-                                console.log(data);
-                                resolve(data);
-                            }
-                        });
+                            .subscribe(function (data) {
+                            _this.responseData = data,
+                                console.log(_this.responseData),
+                                localStorage.setItem("Client", _this.responseData.headers.get("Client")),
+                                localStorage.setItem("Access-Token", _this.responseData.headers.get("Access-Token"));
+                        }, function (err) { return reject(err); }, function () { return console.log("logged in!"); });
                     });
                 };
                 APIService = __decorate([

@@ -28,16 +28,16 @@ export class ConfirmationComponent implements OnInit {
 
     fireConfirmation(confirmationToken, redirectURL) {
         return new Promise((resolve, reject) => {
-            this.http.get(`${this.apiService.baseUrl}/auth/confirmation?config=default&confirmation_token=${confirmationToken}&redirect_url=${redirectURL}`)
-            .map(res => res.json())
-            .subscribe((data, err) => {
-                if (err) {
-                    reject(err)
-                } else {
-                    // TODO: update the template to show the confirmation on success
-                    resolve(data);
-                }
-            })
+            this.http.get(`${this.apiService.baseUrl}/auth/confirmation?config=default&confirmation_token=${confirmationToken}&redirect_url=${redirectURL}`).subscribe(response => console.log(response.headers));
+            //.map(res => res.json())
+            //.subscribe((data, err) => {
+            //    if (err) {
+            //        reject(err)
+            //    } else {
+            //        // TODO: update the template to show the confirmation on success
+            //        resolve(data);
+            //    }
+            //})
         })
     }
 }

@@ -22,26 +22,28 @@ System.register(['angular2/http', "angular2/core"], function(exports_1) {
             HttpClient = (function () {
                 function HttpClient(http) {
                     this.http = http;
-                    this.token = '';
                     this.headers = new http_1.Headers();
                     this.headers.append('Content-Type', 'application/json');
                     this.headers.append('Accept', 'application/vnd.calendarworkouts.v1');
                     this.headers.append("Access-Control-Allow-Origin", "*");
-                    this.headers.append("Access-Control-Allow-Headers", "X-Requested-With");
+                    this.headers.append("Access-Control-Allow-Headers", "X-Requested-With", "Client", "Access-Token");
                     this.headers.append("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
+                    if (localStorage.getItem("Client")) {
+                        this.headers.append("Client", localStorage.getItem("Client"));
+                    }
                 }
-                HttpClient.prototype.setToken = function (token) {
-                    this.token = token;
-                    console.log(this.token);
-                    this.headers.append('client', this.token);
+                HttpClient.prototype.setClientHeader = function (clientHeader) {
+                    this.clientHeader = clientHeader;
+                    console.log(this.clientHeader);
+                    this.headers.append('Client', this.clientHeader);
                 };
-                HttpClient.prototype.get = function (url) {
+                HttpClient.prototype.get = function (url, options) {
                     return this.http.get(url, { headers: this.headers });
                 };
-                HttpClient.prototype.post = function (url, data) {
+                HttpClient.prototype.post = function (url, data, options) {
                     return this.http.post(url, data, { headers: this.headers });
                 };
-                HttpClient.prototype.patch = function (url, data) {
+                HttpClient.prototype.patch = function (url, data, options) {
                     return this.http.patch(url, data, { headers: this.headers });
                 };
                 HttpClient = __decorate([

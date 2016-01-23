@@ -42,17 +42,16 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                 ConfirmationComponent.prototype.fireConfirmation = function (confirmationToken, redirectURL) {
                     var _this = this;
                     return new Promise(function (resolve, reject) {
-                        _this.http.get(_this.apiService.baseUrl + "/auth/confirmation?config=default&confirmation_token=" + confirmationToken + "&redirect_url=" + redirectURL)
-                            .map(function (res) { return res.json(); })
-                            .subscribe(function (data, err) {
-                            if (err) {
-                                reject(err);
-                            }
-                            else {
-                                // TODO: update the template to show the confirmation on success
-                                resolve(data);
-                            }
-                        });
+                        _this.http.get(_this.apiService.baseUrl + "/auth/confirmation?config=default&confirmation_token=" + confirmationToken + "&redirect_url=" + redirectURL).subscribe(function (response) { return console.log(response.headers); });
+                        //.map(res => res.json())
+                        //.subscribe((data, err) => {
+                        //    if (err) {
+                        //        reject(err)
+                        //    } else {
+                        //        // TODO: update the template to show the confirmation on success
+                        //        resolve(data);
+                        //    }
+                        //})
                     });
                 };
                 ConfirmationComponent = __decorate([

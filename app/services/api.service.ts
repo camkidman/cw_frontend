@@ -2,6 +2,8 @@ import {Injectable} from "angular2/core";
 import {Response} from "angular2/http";
 import 'rxjs/add/operator/map';
 import {HttpClient} from "./http.service";
+import {Headers} from "angular2/http";
+import {error} from "util";
 
 @Injectable()
 export class APIService {
@@ -9,46 +11,40 @@ export class APIService {
     email:string;
     password:string;
     passwordConfirmation:string;
+    responseData:Response;
 
     constructor(public http:HttpClient) {
         this.baseUrl = "http://localhost:3009";
         this.http = http;
     }
-    setHeaders(token) {
-        this.http.setToken(token);
-    }
+
     register(email, password, passwordConfirmation) {
         //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
         return new Promise((resolve, reject) => {
-            let creds = {email: email, password: password, password_confirmation: passwordConfirmation, confirm_success_url: "localhost:3000/confirmation"};
+            let creds = {email: email, password: password, password_confirmation: passwordConfirmation};
 
             this.http.post(`${this.baseUrl}/auth`, JSON.stringify(creds))
-                .map(res => res.json())
-                .subscribe((data, err) => {
-                    if (err) {
-                        reject(err)
-                    } else {
-                        console.log(data);
-                        resolve(data);
-                    }
-                })
+                .subscribe(
+                    data => console.log(data),
+                    err => reject(err),
+                    () => console.log("woot"));
         })
     }
+
     login(email, password) {
         //TODO: ACTUALLY ADD A REAL AUTHENTICATION SYSTEM
         return new Promise((resolve, reject) => {
             let creds = {email: email, password: password};
 
             this.http.post(`${this.baseUrl}/auth/sign_in`, JSON.stringify(creds))
-                .map(res => res.json())
-                .subscribe((data, err) => {
-                    if (err) {
-                        reject(err)
-                    } else {
-                        console.log(data);
-                        resolve(data);
-                    }
-                })
+                .subscribe(
+                    data => { this.responseData = data,
+                        console.log(this.responseData),
+                        localStorage.setItem("Client", this.responseData.headers.get("Client")),
+                        localStorage.setItem("Access-Token", this.responseData.headers.get("Access-Token"))},
+                err => reject(err),
+                () => console.log("logged in!")
+            );
         })
     }
 }
