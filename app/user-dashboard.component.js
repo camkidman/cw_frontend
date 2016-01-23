@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', "./services/http.service", "./services/api.service"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,24 +8,49 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, http_service_1, api_service_1;
     var UserDashboardComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (http_service_1_1) {
+                http_service_1 = http_service_1_1;
+            },
+            function (api_service_1_1) {
+                api_service_1 = api_service_1_1;
             }],
         execute: function() {
             UserDashboardComponent = (function () {
-                function UserDashboardComponent() {
+                function UserDashboardComponent(_http, _apiService) {
+                    this._http = _http;
+                    this._apiService = _apiService;
+                    this.userId = localStorage.getItem("user_id");
+                    this.http = _http;
+                    this.apiService = _apiService;
+                    console.log("user constructed");
+                    this.getUserDashboardData();
                 }
+                UserDashboardComponent.prototype.getUserDashboardData = function () {
+                    var _this = this;
+                    return new Promise(function (resolve, reject) {
+                        _this.http.get(_this.apiService.baseUrl + "/users/" + _this.userId + "/dashboard")
+                            .subscribe(function (data) {
+                            console.log(data),
+                                _this.userDashboardJSON = data.json(),
+                                console.log(_this.userDashboardJSON);
+                        }, function (err) { return reject(err); }, function () { return console.log("dashboard loaded!"); });
+                    });
+                };
                 UserDashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'cw-user-dashboard',
-                        template: "\n    <div>{{user | json}}</div>\n  ",
-                        inputs: ['user']
+                        templateUrl: 'app/templates/user-dashboard.component.html',
+                        inputs: ['userDashboardJSON'],
+                        providers: [http_service_1.HttpClient, api_service_1.APIService],
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [http_service_1.HttpClient, api_service_1.APIService])
                 ], UserDashboardComponent);
                 return UserDashboardComponent;
             })();

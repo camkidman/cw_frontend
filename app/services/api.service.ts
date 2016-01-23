@@ -12,6 +12,7 @@ export class APIService {
     password:string;
     passwordConfirmation:string;
     responseData:Response;
+    jsonResponseBody:any;
 
     constructor(public http:HttpClient) {
         this.baseUrl = "http://localhost:3009";
@@ -39,9 +40,10 @@ export class APIService {
             this.http.post(`${this.baseUrl}/auth/sign_in`, JSON.stringify(creds))
                 .subscribe(
                     data => { this.responseData = data,
-                        console.log(this.responseData),
                         localStorage.setItem("Client", this.responseData.headers.get("Client")),
-                        localStorage.setItem("Access-Token", this.responseData.headers.get("Access-Token"))},
+                        localStorage.setItem("Access-Token", this.responseData.headers.get("Access-Token")),
+                        this.jsonResponseBody = this.responseData.json(),
+                        localStorage.setItem("user_id", this.jsonResponseBody.data.id)},
                 err => reject(err),
                 () => console.log("logged in!")
             );

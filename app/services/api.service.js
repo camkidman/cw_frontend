@@ -43,9 +43,10 @@ System.register(["angular2/core", 'rxjs/add/operator/map', "./http.service"], fu
                         _this.http.post(_this.baseUrl + "/auth/sign_in", JSON.stringify(creds))
                             .subscribe(function (data) {
                             _this.responseData = data,
-                                console.log(_this.responseData),
                                 localStorage.setItem("Client", _this.responseData.headers.get("Client")),
-                                localStorage.setItem("Access-Token", _this.responseData.headers.get("Access-Token"));
+                                localStorage.setItem("Access-Token", _this.responseData.headers.get("Access-Token")),
+                                _this.jsonResponseBody = _this.responseData.json(),
+                                localStorage.setItem("user_id", _this.jsonResponseBody.data.id);
                         }, function (err) { return reject(err); }, function () { return console.log("logged in!"); });
                     });
                 };

@@ -1,12 +1,12 @@
 import {Component} from 'angular2/core';
 import {UserService} from './services/user.service';
-import {UserDashboardComponent} from './user-dashboard.component';
 import {LoginFormComponent} from './login-form.component';
 import {APIService} from './services/api.service';
 import {HttpClient} from "./services/http.service";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {RegistrationComponent} from './registration.component';
 import {ConfirmationComponent} from './confirmation.component';
+import {UserDashboardComponent} from './user-dashboard.component';
 
 @Component({
   selector: 'cw-api-app',
@@ -15,12 +15,9 @@ import {ConfirmationComponent} from './confirmation.component';
     <nav>
       <a [routerLink]="['SignUp']">Register</a>
       <a [routerLink]="['Login']">Log In</a>
+      <a [routerLink]="['UserDashboard']">Dashboard</a>
     </nav>
     <router-outlet></router-outlet>
-    <ul><li (click)="userFetch(event)">Blah</li></ul>
-    <div class="user-info">
-      <cw-user-dashboard [user]="user"></cw-user-dashboard>
-    </div>
   `,
   directives: [UserDashboardComponent, LoginFormComponent, RegistrationComponent, ROUTER_DIRECTIVES],
   providers: [UserService, APIService, HttpClient]
@@ -29,7 +26,8 @@ import {ConfirmationComponent} from './confirmation.component';
 @RouteConfig([
   {path:'/sign_up', name: 'SignUp', component: RegistrationComponent},
   {path:'/login', name: 'Login', component: LoginFormComponent},
-    {path:'/confirm_registration', name: 'ConfirmRegistration', component: ConfirmationComponent}
+  {path:'/confirm_registration', name: 'ConfirmRegistration', component: ConfirmationComponent},
+  {path:'/dashboard', name: 'UserDashboard', component: UserDashboardComponent}
 ])
 
 export class AppComponent {
