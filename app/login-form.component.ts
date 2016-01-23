@@ -20,6 +20,7 @@ export class LoginFormComponent {
 
     constructor(public apiService: APIService, fb:FormBuilder) {
         this.form = fb.group({"prop1": ["", Validators.required]});
+        this.apiService = apiService;
     }
 
     onSubmit(data) {

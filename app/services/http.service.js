@@ -28,9 +28,8 @@ System.register(['angular2/http', "angular2/core"], function(exports_1) {
                     this.headers.append("Access-Control-Allow-Origin", "*");
                     this.headers.append("Access-Control-Allow-Headers", "X-Requested-With", "Client", "Access-Token");
                     this.headers.append("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
-                    if (localStorage.getItem("Client")) {
-                        this.headers.append("Client", localStorage.getItem("Client"));
-                    }
+                    this.setAuthTokenIfAvailable();
+                    this.setClientHeaderIfAvailable();
                 }
                 HttpClient.prototype.setClientHeader = function (clientHeader) {
                     this.clientHeader = clientHeader;
@@ -45,6 +44,18 @@ System.register(['angular2/http', "angular2/core"], function(exports_1) {
                 };
                 HttpClient.prototype.patch = function (url, data, options) {
                     return this.http.patch(url, data, { headers: this.headers });
+                };
+                HttpClient.prototype.setAuthTokenIfAvailable = function () {
+                    if (localStorage.getItem("Access-Token") && !this.headers.get("Access-Token")) {
+                        this.headers.append("Access-Token", localStorage.getItem("Client"));
+                        console.log("access token is there");
+                    }
+                };
+                HttpClient.prototype.setClientHeaderIfAvailable = function () {
+                    if (localStorage.getItem("Client") && !this.headers.get("Client")) {
+                        this.headers.append("Client", localStorage.getItem("Client"));
+                        console.log("client is there");
+                    }
                 };
                 HttpClient = __decorate([
                     core_1.Injectable(), 

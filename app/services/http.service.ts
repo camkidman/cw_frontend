@@ -8,7 +8,6 @@ import {RequestOptionsArgs} from "angular2/http";
 export class HttpClient {
     token:string;
     headers:any;
-    responseHeaders:any;
     clientHeader:Headers;
     constructor(public http:Http) {
         this.headers = new Headers();
@@ -17,9 +16,8 @@ export class HttpClient {
         this.headers.append("Access-Control-Allow-Origin", "*");
         this.headers.append("Access-Control-Allow-Headers", "X-Requested-With", "Client", "Access-Token");
         this.headers.append("Access-Control-Allow-Methods", "GET, POST", "PUT", "DELETE");
-        if(localStorage.getItem("Client")) {
-            this.headers.append("Client", localStorage.getItem("Client"))
-        }
+        this.setAuthTokenIfAvailable();
+        this.setClientHeaderIfAvailable();
     }
     setClientHeader(clientHeader) {
         this.clientHeader = clientHeader;
@@ -34,5 +32,19 @@ export class HttpClient {
     }
     patch(url: string, data: any, options?: RequestOptionsArgs) : Observable<Response> {
         return this.http.patch(url, data, {headers: this.headers});
+    }
+
+    setAuthTokenIfAvailable() {
+        if(localStorage.getItem("Access-Token") && !this.headers.get("Access-Token")) {
+            this.headers.append("Access-Token", localStorage.getItem("Client"));
+            console.log("access token is there");
+        }
+    }
+
+    setClientHeaderIfAvailable() {
+        if(localStorage.getItem("Client") && !this.headers.get("Client")) {
+            this.headers.append("Client", localStorage.getItem("Client"));
+            console.log("client is there");
+        }
     }
 }
