@@ -39,6 +39,9 @@ System.register(['angular2/http', "angular2/core"], function(exports_1) {
                 HttpClient.prototype.get = function (url, options) {
                     return this.http.get(url, { headers: this.headers });
                 };
+                HttpClient.prototype.delete = function (url, options) {
+                    return this.http.delete(url, { headers: this.headers });
+                };
                 HttpClient.prototype.post = function (url, data, options) {
                     return this.http.post(url, data, { headers: this.headers });
                 };

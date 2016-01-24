@@ -27,6 +27,9 @@ export class HttpClient {
     get(url: string, options?: RequestOptionsArgs) : Observable<Response> {
         return this.http.get(url, {headers: this.headers});
     }
+    delete(url: string, options?: RequestOptionsArgs) : Observable<Response> {
+        return this.http.delete(url, {headers: this.headers});
+    }
     post(url: string, data: any, options?: RequestOptionsArgs) : Observable<Response> {
         return this.http.post(url, data, {headers: this.headers});
     }

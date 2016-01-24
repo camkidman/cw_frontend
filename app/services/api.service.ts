@@ -49,4 +49,17 @@ export class APIService {
             );
         })
     }
+
+    logout() {
+        return new Promise((resolve, reject) => {
+            this.http.delete(`${this.baseUrl}/auth/sign_out`)
+                .subscribe(
+                    data => { console.log("signed out!"),
+                    localStorage.removeItem("Client"),
+                    localStorage.removeItem("Access-Token")},
+                    err => reject(err),
+                    () => console.log("finished signing out")
+                );
+        })
+    }
 }

@@ -41,14 +41,20 @@ System.register(['angular2/core', './services/user.service', './login-form.compo
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent(_userService) {
+                function AppComponent(_userService, _apiService) {
                     this._userService = _userService;
+                    this._apiService = _apiService;
                     this.title = "Calendar Workouts";
+                    this.apiService = _apiService;
                 }
+                AppComponent.prototype.logout = function () {
+                    console.log("call logout");
+                    this.apiService.logout();
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'cw-api-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <nav>\n      <a [routerLink]=\"['SignUp']\">Register</a>\n      <a [routerLink]=\"['Login']\">Log In</a>\n      <a [routerLink]=\"['UserDashboard']\">Dashboard</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
+                        template: "\n    <h1>{{title}}</h1>\n    <nav>\n      <a [routerLink]=\"['SignUp']\">Register</a>\n      <a [routerLink]=\"['Login']\">Log In</a>\n      <a (click)=\"logout()\" href=\"#\">Log Out</a>\n      <a [routerLink]=\"['UserDashboard']\">Dashboard</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
                         directives: [user_dashboard_component_1.UserDashboardComponent, login_form_component_1.LoginFormComponent, registration_component_1.RegistrationComponent, router_1.ROUTER_DIRECTIVES],
                         providers: [user_service_1.UserService, api_service_1.APIService, http_service_1.HttpClient]
                     }),
@@ -58,7 +64,7 @@ System.register(['angular2/core', './services/user.service', './login-form.compo
                         { path: '/confirm_registration', name: 'ConfirmRegistration', component: confirmation_component_1.ConfirmationComponent },
                         { path: '/dashboard', name: 'UserDashboard', component: user_dashboard_component_1.UserDashboardComponent }
                     ]), 
-                    __metadata('design:paramtypes', [user_service_1.UserService])
+                    __metadata('design:paramtypes', [user_service_1.UserService, api_service_1.APIService])
                 ], AppComponent);
                 return AppComponent;
             })();

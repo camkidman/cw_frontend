@@ -15,6 +15,7 @@ import {UserDashboardComponent} from './user-dashboard.component';
     <nav>
       <a [routerLink]="['SignUp']">Register</a>
       <a [routerLink]="['Login']">Log In</a>
+      <a (click)="logout()" href="#">Log Out</a>
       <a [routerLink]="['UserDashboard']">Dashboard</a>
     </nav>
     <router-outlet></router-outlet>
@@ -33,11 +34,14 @@ import {UserDashboardComponent} from './user-dashboard.component';
 export class AppComponent {
   public title = "Calendar Workouts";
   public user: Object;
+  apiService: APIService;
 
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService, private _apiService:APIService) {
+    this.apiService = _apiService;
+  }
 
-  //userFetch() {
-  //  console.log("wtf");
-  //  this._userService.getUserDashboard().subscribe(res => this.user = res);
-  //}
+  logout() {
+    console.log("call logout");
+    this.apiService.logout();
+  }
 }

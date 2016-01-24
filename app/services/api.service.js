@@ -50,6 +50,17 @@ System.register(["angular2/core", 'rxjs/add/operator/map', "./http.service"], fu
                         }, function (err) { return reject(err); }, function () { return console.log("logged in!"); });
                     });
                 };
+                APIService.prototype.logout = function () {
+                    var _this = this;
+                    return new Promise(function (resolve, reject) {
+                        _this.http.delete(_this.baseUrl + "/auth/sign_out")
+                            .subscribe(function (data) {
+                            console.log("signed out!"),
+                                localStorage.removeItem("Client"),
+                                localStorage.removeItem("Access-Token");
+                        }, function (err) { return reject(err); }, function () { return console.log("finished signing out"); });
+                    });
+                };
                 APIService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_service_1.HttpClient])
