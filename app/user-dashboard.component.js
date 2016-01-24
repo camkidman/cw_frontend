@@ -39,6 +39,9 @@ System.register(['angular2/core', "./services/http.service", "./services/api.ser
                             .subscribe(function (data) {
                             console.log(data),
                                 _this.userDashboardJSON = data.json(),
+                                _this.goals = _this.userDashboardJSON.goals,
+                                _this.personalDetails = _this.userDashboardJSON.personal_details,
+                                _this.user = _this.userDashboardJSON.user,
                                 console.log(_this.userDashboardJSON);
                         }, function (err) { return reject(err); }, function () { return console.log("dashboard loaded!"); });
                     });
@@ -47,7 +50,7 @@ System.register(['angular2/core', "./services/http.service", "./services/api.ser
                     core_1.Component({
                         selector: 'cw-user-dashboard',
                         templateUrl: 'app/templates/user-dashboard.component.html',
-                        inputs: ['userDashboardJSON'],
+                        inputs: ['userDashboardJSON', 'goals'],
                         providers: [http_service_1.HttpClient, api_service_1.APIService],
                     }), 
                     __metadata('design:paramtypes', [http_service_1.HttpClient, api_service_1.APIService])

@@ -1,4 +1,14 @@
 <cw-user-dashboard>
     <span>My nigga...</span>
-    {{userDashboardJSON}}
+    <h2>Your Goals:</h2>
+    <ul>
+        <li *ngFor="#goal of goals">
+            {{goal.text}}
+        </li>
+    </ul>
+    <h2>Your personal details</h2>
+    <ul *ngFor="#pd of personalDetails">
+        <li>Weight: {{pd.weight}}</li>
+        <li>Bicep: {{pd.bicep}}</li>
+    </ul>
 </cw-user-dashboard>

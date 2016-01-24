@@ -5,15 +5,18 @@ import {APIService} from "./services/api.service";
 @Component({
     selector: 'cw-user-dashboard',
     templateUrl: 'app/templates/user-dashboard.component.html',
-    inputs: ['userDashboardJSON'],
+    inputs: ['userDashboardJSON', 'goals'],
     providers: [HttpClient, APIService],
 })
 
 export class UserDashboardComponent {
     http: HttpClient;
     userId:number;
-    userDashboardJSON:Object;
+    public userDashboardJSON:any;
     apiService:APIService;
+    goals:Array<Object>;
+    personalDetails:Array<Object>;
+    user:Object;
 
     constructor(private _http:HttpClient, private _apiService:APIService) {
         this.userId = localStorage.getItem("user_id");
@@ -29,11 +32,13 @@ export class UserDashboardComponent {
                 .subscribe(
                     data => { console.log(data),
                         this.userDashboardJSON = data.json(),
+                        this.goals = this.userDashboardJSON.goals,
+                        this.personalDetails = this.userDashboardJSON.personal_details,
+                        this.user = this.userDashboardJSON.user,
                         console.log(this.userDashboardJSON)},
                     err => reject(err),
                     () => console.log("dashboard loaded!")
                 );
         })
     }
-
 }
