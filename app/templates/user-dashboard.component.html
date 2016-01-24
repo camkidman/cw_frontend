@@ -1,5 +1,5 @@
 <cw-user-dashboard>
-    <span>My nigga...</span>
+    <h1 *ngIf="user && user.name">Welcome {{user.name}}!</h1>
     <h2>Your Goals:</h2>
     <ul>
         <li *ngFor="#goal of goals">

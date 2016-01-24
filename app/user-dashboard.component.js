@@ -50,7 +50,7 @@ System.register(['angular2/core', "./services/http.service", "./services/api.ser
                     core_1.Component({
                         selector: 'cw-user-dashboard',
                         templateUrl: 'app/templates/user-dashboard.component.html',
-                        inputs: ['userDashboardJSON', 'goals'],
+                        inputs: ['userDashboardJSON', 'goals', 'user'],
                         providers: [http_service_1.HttpClient, api_service_1.APIService],
                     }), 
                     __metadata('design:paramtypes', [http_service_1.HttpClient, api_service_1.APIService])

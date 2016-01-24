@@ -5,7 +5,7 @@ import {APIService} from "./services/api.service";
 @Component({
     selector: 'cw-user-dashboard',
     templateUrl: 'app/templates/user-dashboard.component.html',
-    inputs: ['userDashboardJSON', 'goals'],
+    inputs: ['userDashboardJSON', 'goals', 'user'],
     providers: [HttpClient, APIService],
 })
 
