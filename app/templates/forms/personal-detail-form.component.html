@@ -1,0 +1,52 @@
+<div class="container">
+    <h1>Enter Your Details</h1>
+    <div>
+        <form #personalDetailForm="ngForm" (ngSubmit)="onSubmit(personalDetailForm.value)">
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <input type="text" class="form-control" required ngControl="gender">
+            </div>
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="text" class="form-control" required ngControl="weight">
+            </div>
+            <div class="form-group">
+                <label for="neck">Neck</label>
+                <input type="text" class="form-control" required ngControl="neck">
+            </div>
+            <div class="form-group">
+                <label for="shoulders">Shoulders</label>
+                <input type="text" class="form-control" required ngControl="shoulders">
+            </div>
+            <div class="form-group">
+                <label for="chest">Chest</label>
+                <input type="text" class="form-control" required ngControl="chest">
+            </div>
+            <div class="form-group">
+                <label for="bicep">Bicep</label>
+                <input type="text" class="form-control" required ngControl="bicep">
+            </div>
+            <div class="form-group">
+                <label for="waist">Waist</label>
+                <input type="text" class="form-control" required ngControl="waist">
+            </div>
+            <div class="form-group">
+                <label for="hips">Hips</label>
+                <input type="text" class="form-control" required ngControl="hips">
+            </div>
+            <div class="form-group">
+                <label for="thigh">Thigh</label>
+                <input type="text" class="form-control" required ngControl="thigh">
+            </div>
+            <div class="form-group">
+                <label for="resting_heart_rate">Resting Heart Rate</label>
+                <input type="text" class="form-control" required ngControl="resting_heart_rate">
+            </div>
+            <div class="form-group">
+                <label for="calf">Calf</label>
+                <input type="text" class="form-control" required ngControl="calf">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>

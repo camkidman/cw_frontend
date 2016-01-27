@@ -6,7 +6,6 @@ import {RequestOptionsArgs} from "angular2/http";
 
 @Injectable()
 export class HttpClient {
-    token:string;
     headers:any;
     clientHeader:Headers;
     constructor(public http:Http) {
