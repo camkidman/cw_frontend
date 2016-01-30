@@ -8,6 +8,7 @@ import {RegistrationComponent} from './registration.component';
 import {ConfirmationComponent} from './confirmation.component';
 import {UserDashboardComponent} from './user-dashboard.component';
 import {PersonalDetailFormComponent} from "./personal-detail-form.component";
+import {InitialTestFormComponent} from "./initial-test-form.component";
 
 @Component({
   selector: 'cw-api-app',
@@ -19,6 +20,7 @@ import {PersonalDetailFormComponent} from "./personal-detail-form.component";
       <a (click)="logout()" href="#">Log Out</a>
       <a [routerLink]="['UserDashboard']">Dashboard</a>
       <a [routerLink]="['PersonalDetailForm']">Update Personal Details</a>
+      <a [routerLink]="['InitialTestForm']">Complete your initial test!</a>
     </nav>
     <router-outlet></router-outlet>
   `,
@@ -31,7 +33,8 @@ import {PersonalDetailFormComponent} from "./personal-detail-form.component";
   {path:'/login', name: 'Login', component: LoginFormComponent},
   {path:'/confirm_registration', name: 'ConfirmRegistration', component: ConfirmationComponent},
   {path:'/dashboard', name: 'UserDashboard', component: UserDashboardComponent},
-  {path:'/update_personal_details', name: 'PersonalDetailForm', component: PersonalDetailFormComponent}
+  {path:'/update_personal_details', name: 'PersonalDetailForm', component: PersonalDetailFormComponent},
+  {path:'/initial_test_form', name: 'InitialTestForm', component: InitialTestFormComponent}
 ])
 
 export class AppComponent {

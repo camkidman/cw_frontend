@@ -1,4 +1,4 @@
-System.register(['angular2/core', './services/user.service', './login-form.component', './services/api.service', "./services/http.service", "angular2/router", './registration.component', './confirmation.component', './user-dashboard.component', "./personal-detail-form.component"], function(exports_1) {
+System.register(['angular2/core', './services/user.service', './login-form.component', './services/api.service', "./services/http.service", "angular2/router", './registration.component', './confirmation.component', './user-dashboard.component', "./personal-detail-form.component", "./initial-test-form.component"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './services/user.service', './login-form.compo
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_service_1, login_form_component_1, api_service_1, http_service_1, router_1, registration_component_1, confirmation_component_1, user_dashboard_component_1, personal_detail_form_component_1;
+    var core_1, user_service_1, login_form_component_1, api_service_1, http_service_1, router_1, registration_component_1, confirmation_component_1, user_dashboard_component_1, personal_detail_form_component_1, initial_test_form_component_1;
     var AppComponent;
     return {
         setters:[
@@ -41,6 +41,9 @@ System.register(['angular2/core', './services/user.service', './login-form.compo
             },
             function (personal_detail_form_component_1_1) {
                 personal_detail_form_component_1 = personal_detail_form_component_1_1;
+            },
+            function (initial_test_form_component_1_1) {
+                initial_test_form_component_1 = initial_test_form_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -57,7 +60,7 @@ System.register(['angular2/core', './services/user.service', './login-form.compo
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'cw-api-app',
-                        template: "\n    <h1>{{title}}</h1>\n    <nav>\n      <a [routerLink]=\"['SignUp']\">Register</a>\n      <a [routerLink]=\"['Login']\">Log In</a>\n      <a (click)=\"logout()\" href=\"#\">Log Out</a>\n      <a [routerLink]=\"['UserDashboard']\">Dashboard</a>\n      <a [routerLink]=\"['PersonalDetailForm']\">Update Personal Details</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
+                        template: "\n    <h1>{{title}}</h1>\n    <nav>\n      <a [routerLink]=\"['SignUp']\">Register</a>\n      <a [routerLink]=\"['Login']\">Log In</a>\n      <a (click)=\"logout()\" href=\"#\">Log Out</a>\n      <a [routerLink]=\"['UserDashboard']\">Dashboard</a>\n      <a [routerLink]=\"['PersonalDetailForm']\">Update Personal Details</a>\n      <a [routerLink]=\"['InitialTestForm']\">Complete your initial test!</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
                         directives: [user_dashboard_component_1.UserDashboardComponent, login_form_component_1.LoginFormComponent, registration_component_1.RegistrationComponent, router_1.ROUTER_DIRECTIVES],
                         providers: [user_service_1.UserService, api_service_1.APIService, http_service_1.HttpClient]
                     }),
@@ -66,7 +69,8 @@ System.register(['angular2/core', './services/user.service', './login-form.compo
                         { path: '/login', name: 'Login', component: login_form_component_1.LoginFormComponent },
                         { path: '/confirm_registration', name: 'ConfirmRegistration', component: confirmation_component_1.ConfirmationComponent },
                         { path: '/dashboard', name: 'UserDashboard', component: user_dashboard_component_1.UserDashboardComponent },
-                        { path: '/update_personal_details', name: 'PersonalDetailForm', component: personal_detail_form_component_1.PersonalDetailFormComponent }
+                        { path: '/update_personal_details', name: 'PersonalDetailForm', component: personal_detail_form_component_1.PersonalDetailFormComponent },
+                        { path: '/initial_test_form', name: 'InitialTestForm', component: initial_test_form_component_1.InitialTestFormComponent }
                     ]), 
                     __metadata('design:paramtypes', [user_service_1.UserService, api_service_1.APIService])
                 ], AppComponent);

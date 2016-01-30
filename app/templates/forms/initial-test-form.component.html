@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Exercises in your initial test:</h1>
+
+    <div *ngFor="#workout of initialTestWorkouts">
+        <form #workoutForm="ngForm" (ngSubmit)="onSubmit(workoutForm.value)">
+            <div class="form-group" *ngFor="#exerciseDetail of workout.exercise_details">
+                <span>Name: {{exerciseDetail.exercises[0].name}}</span><br />
+                <span>Proper form text: {{exerciseDetail.exercises[0].proper_form_text}}</span><br />
+                <span>Requires a gym? {{exerciseDetail.exercises[0].requires_gym ? "Yep!" : "Nope"}}</span><br />
+                <span>Youtube URL: <a href="{{exerciseDetail.exercises[0].youtube_url}}">{{exerciseDetail.exercises[0].youtube_url}}</a></span><br />
+                <br />
+                <input type="text" class="form-control" ngControl="exerciseDetail.reps" placeholder="Reps"/>
+                <input type="text" class="form-control" ngControl="exerciseDetail.sets" placeholder="Sets"/>
+                <input type="text" class="form-control" ngControl="exerciseDetail.weight" placeholder="Weight"/>
+                <input type="text" class="form-control" ngControl="exerciseDetail.time" placeholder="Time"/>
+                <br />
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+</div>

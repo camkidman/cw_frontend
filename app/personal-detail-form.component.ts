@@ -10,7 +10,6 @@ import {FORM_DIRECTIVES, CORE_DIRECTIVES, FormBuilder, Validators} from "angular
     templateUrl: 'app/templates/forms/personal-detail-form.component.html',
     providers: [HttpClient, APIService],
     directives: [FORM_DIRECTIVES, CORE_DIRECTIVES],
-    inputs: ['date']
 })
 
 export class PersonalDetailFormComponent {

@@ -9,7 +9,7 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, api_service_1, http_service_1, common_1;
-    var PersonalDetailFormComponent;
+    var InitialTestFormComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -25,40 +25,50 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                 common_1 = common_1_1;
             }],
         execute: function() {
-            PersonalDetailFormComponent = (function () {
-                function PersonalDetailFormComponent(apiService, http, fb) {
+            InitialTestFormComponent = (function () {
+                function InitialTestFormComponent(apiService, http, fb) {
                     this.apiService = apiService;
                     this.http = http;
                     this.userId = localStorage.getItem("user_id");
+                    this.getInitialTest();
                     this.form = fb.group({ "prop1": ["", common_1.Validators.required] });
                 }
-                PersonalDetailFormComponent.prototype.onSubmit = function (data) {
+                InitialTestFormComponent.prototype.getInitialTest = function () {
                     var _this = this;
                     return new Promise(function (resolve, reject) {
-                        var date = new Date();
-                        var yyyy = date.getFullYear();
-                        var mm = date.getMonth();
-                        var dd = date.getDate();
-                        data.date = yyyy + "-" + dd + "-" + mm;
-                        var personalDetailParams = { "personal_detail": data };
-                        console.log(personalDetailParams);
-                        _this.http.post(_this.apiService.baseUrl + "/users/" + _this.userId + "/personal_details", JSON.stringify(personalDetailParams))
+                        _this.http.get(_this.apiService.baseUrl + "/users/" + _this.userId + "/initial_test")
+                            .subscribe(function (data) {
+                            _this.initialTestData = data.json(),
+                                console.log(_this.initialTestData.initial_test),
+                                _this.initialTestWorkouts = _this.initialTestData.initial_test.workouts,
+                                _this.initialTestExerciseDetails = _this.initialTestWorkouts[0].exercise_details,
+                                _this.initialTestExercises = _this.initialTestWorkouts[0].exercises,
+                                console.log(_this.initialTestExercises);
+                        }, function (err) { return reject(err); }, function () { return console.log("got the initial test!"); });
+                    });
+                };
+                InitialTestFormComponent.prototype.onSubmit = function (data) {
+                    var _this = this;
+                    return new Promise(function (resolve, reject) {
+                        var initialTestParams = { workout: data };
+                        console.log(initialTestParams);
+                        _this.http.patch(_this.apiService.baseUrl + "/users/" + _this.userId + "/workouts/" + _this.initialTestWorkouts[0].id, JSON.stringify(initialTestParams))
                             .subscribe(function (data) { console.log("personal detail created, biotch!"); }, function (err) { return reject(err); }, function () { return console.log("finished creating personal detail"); });
                     });
                 };
-                PersonalDetailFormComponent = __decorate([
+                InitialTestFormComponent = __decorate([
                     core_1.Component({
-                        selector: 'personal-detail-form',
-                        templateUrl: 'app/templates/forms/personal-detail-form.component.html',
+                        selector: 'initial-test-form',
+                        templateUrl: 'app/templates/forms/initial-test-form.component.html',
                         providers: [http_service_1.HttpClient, api_service_1.APIService],
                         directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
                     }), 
                     __metadata('design:paramtypes', [api_service_1.APIService, http_service_1.HttpClient, common_1.FormBuilder])
-                ], PersonalDetailFormComponent);
-                return PersonalDetailFormComponent;
+                ], InitialTestFormComponent);
+                return InitialTestFormComponent;
             })();
-            exports_1("PersonalDetailFormComponent", PersonalDetailFormComponent);
+            exports_1("InitialTestFormComponent", InitialTestFormComponent);
         }
     }
 });
-//# sourceMappingURL=personal-detail-form.component.js.map
+//# sourceMappingURL=initial-test-form.component.js.map
