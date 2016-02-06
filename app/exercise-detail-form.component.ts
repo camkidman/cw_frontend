@@ -22,16 +22,18 @@ export class ExerciseDetailFormComponent {
     weightControl = new Control();
     timeControl = new Control();
     idControl = new Control();
+    controlMaan = new ControlGroup({});
 
     @Input() exerciseDetailGroup;
     @Input() exerciseDetailId;
     ngOnInit() {
-        this.exerciseDetailGroup.addControl("repControl", this.repsControl);
-        this.exerciseDetailGroup.addControl("setsControl", this.setsControl);
-        this.exerciseDetailGroup.addControl("weightControl", this.weightControl);
-        this.exerciseDetailGroup.addControl("timeControl", this.timeControl);
-        this.exerciseDetailGroup.addControl("idControl", this.idControl);
+        this.controlMaan.addControl("reps", this.repsControl);
+        this.controlMaan.addControl("sets", this.setsControl);
+        this.controlMaan.addControl("weight", this.weightControl);
+        this.controlMaan.addControl("time", this.timeControl);
+        this.controlMaan.addControl("id", this.idControl);
         this.idControl.updateValue(this.exerciseDetailId);
+        this.exerciseDetailGroup.addControl(`exercise_detail${this.exerciseDetailId}`, this.controlMaan);
     }
 
 }

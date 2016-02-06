@@ -36,11 +36,9 @@ export class InitialTestFormComponent {
             this.http.get(`${this.apiService.baseUrl}/users/${this.userId}/initial_test`)
                 .subscribe(
                     data => { this.initialTestData = data.json(),
-                        console.log(this.initialTestData.initial_test),
                         this.initialTestWorkouts = this.initialTestData.initial_test.workouts,
                         this.initialTestExerciseDetails = this.initialTestWorkouts[0].exercise_details,
-                        this.initialTestExercises = this.initialTestWorkouts[0].exercises,
-                        console.log(this.initialTestExerciseDetails)
+                        this.initialTestExercises = this.initialTestWorkouts[0].exercises
                         },
                     err => reject(err),
                     () => console.log("got the initial test!")
@@ -51,8 +49,13 @@ export class InitialTestFormComponent {
     onSubmit(data) {
         return new Promise((resolve, reject) => {
             let exerciseDetails = data;
-            let initialTestParams = {workout: data};
-            console.log(data);
+            let initialTestParams = {workout: {exercise_details_attributes: []}};
+            for (var item in exerciseDetails) {
+                if (exerciseDetails.hasOwnProperty(item)) {
+                    initialTestParams.workout.exercise_details_attributes.push(exerciseDetails[item]);
+                }
+            }
+            console.log(initialTestParams);
             this.http.patch(`${this.apiService.baseUrl}/users/${this.userId}/workouts/${this.initialTestWorkouts[0].id}`, JSON.stringify(initialTestParams))
                 .subscribe(
                     data => { console.log("personal detail created, biotch!")},

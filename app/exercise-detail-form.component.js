@@ -26,14 +26,16 @@ System.register(['angular2/core', "angular2/common"], function(exports_1) {
                     this.weightControl = new common_1.Control();
                     this.timeControl = new common_1.Control();
                     this.idControl = new common_1.Control();
+                    this.controlMaan = new common_1.ControlGroup({});
                 }
                 ExerciseDetailFormComponent.prototype.ngOnInit = function () {
-                    this.exerciseDetailGroup.addControl("repControl", this.repsControl);
-                    this.exerciseDetailGroup.addControl("setsControl", this.setsControl);
-                    this.exerciseDetailGroup.addControl("weightControl", this.weightControl);
-                    this.exerciseDetailGroup.addControl("timeControl", this.timeControl);
-                    this.exerciseDetailGroup.addControl("idControl", this.idControl);
+                    this.controlMaan.addControl("reps", this.repsControl);
+                    this.controlMaan.addControl("sets", this.setsControl);
+                    this.controlMaan.addControl("weight", this.weightControl);
+                    this.controlMaan.addControl("time", this.timeControl);
+                    this.controlMaan.addControl("id", this.idControl);
                     this.idControl.updateValue(this.exerciseDetailId);
+                    this.exerciseDetailGroup.addControl("exercise_detail" + this.exerciseDetailId, this.controlMaan);
                 };
                 __decorate([
                     core_1.Input(), 

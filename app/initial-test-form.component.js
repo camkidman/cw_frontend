@@ -43,11 +43,9 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                         _this.http.get(_this.apiService.baseUrl + "/users/" + _this.userId + "/initial_test")
                             .subscribe(function (data) {
                             _this.initialTestData = data.json(),
-                                console.log(_this.initialTestData.initial_test),
                                 _this.initialTestWorkouts = _this.initialTestData.initial_test.workouts,
                                 _this.initialTestExerciseDetails = _this.initialTestWorkouts[0].exercise_details,
-                                _this.initialTestExercises = _this.initialTestWorkouts[0].exercises,
-                                console.log(_this.initialTestExerciseDetails);
+                                _this.initialTestExercises = _this.initialTestWorkouts[0].exercises;
                         }, function (err) { return reject(err); }, function () { return console.log("got the initial test!"); });
                     });
                 };
@@ -55,8 +53,13 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                     var _this = this;
                     return new Promise(function (resolve, reject) {
                         var exerciseDetails = data;
-                        var initialTestParams = { workout: data };
-                        console.log(data);
+                        var initialTestParams = { workout: { exercise_details_attributes: [] } };
+                        for (var item in exerciseDetails) {
+                            if (exerciseDetails.hasOwnProperty(item)) {
+                                initialTestParams.workout.exercise_details_attributes.push(exerciseDetails[item]);
+                            }
+                        }
+                        console.log(initialTestParams);
                         _this.http.patch(_this.apiService.baseUrl + "/users/" + _this.userId + "/workouts/" + _this.initialTestWorkouts[0].id, JSON.stringify(initialTestParams))
                             .subscribe(function (data) { console.log("personal detail created, biotch!"); }, function (err) { return reject(err); }, function () { return console.log("finished creating personal detail"); });
                     });
