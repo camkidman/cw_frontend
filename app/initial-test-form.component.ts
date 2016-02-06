@@ -4,12 +4,16 @@ import {APIService} from './services/api.service';
 import {HttpClient} from './services/http.service';
 import {NgForm} from 'angular2/common';
 import {FORM_DIRECTIVES, CORE_DIRECTIVES, FormBuilder, Validators} from "angular2/common";
+import {ControlGroup} from "angular2/common";
+import {Control} from "angular2/common";
+import {ExerciseDetailFormComponent} from "./exercise-detail-form.component";
+import {ControlArray} from "angular2/common";
 
 @Component({
     selector: 'initial-test-form',
     templateUrl: 'app/templates/forms/initial-test-form.component.html',
     providers: [HttpClient, APIService],
-    directives: [FORM_DIRECTIVES, CORE_DIRECTIVES],
+    directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, ExerciseDetailFormComponent],
 })
 
 export class InitialTestFormComponent {
@@ -20,11 +24,11 @@ export class InitialTestFormComponent {
     initialTestWorkouts:any;
     initialTestExercises:any;
     initialTestExerciseDetails:any;
+    exerciseDetailGroup = new ControlGroup({});
 
-    constructor(public apiService:APIService, public http:HttpClient, fb:FormBuilder) {
+    constructor(public apiService:APIService, public http:HttpClient) {
         this.userId = localStorage.getItem("user_id");
         this.getInitialTest();
-        this.form = fb.group({"prop1": ["", Validators.required]});
     }
 
     getInitialTest() {
@@ -36,7 +40,7 @@ export class InitialTestFormComponent {
                         this.initialTestWorkouts = this.initialTestData.initial_test.workouts,
                         this.initialTestExerciseDetails = this.initialTestWorkouts[0].exercise_details,
                         this.initialTestExercises = this.initialTestWorkouts[0].exercises,
-                        console.log(this.initialTestExercises)
+                        console.log(this.initialTestExerciseDetails)
                         },
                     err => reject(err),
                     () => console.log("got the initial test!")
@@ -46,8 +50,9 @@ export class InitialTestFormComponent {
 
     onSubmit(data) {
         return new Promise((resolve, reject) => {
+            let exerciseDetails = data;
             let initialTestParams = {workout: data};
-            console.log(initialTestParams);
+            console.log(data);
             this.http.patch(`${this.apiService.baseUrl}/users/${this.userId}/workouts/${this.initialTestWorkouts[0].id}`, JSON.stringify(initialTestParams))
                 .subscribe(
                     data => { console.log("personal detail created, biotch!")},
