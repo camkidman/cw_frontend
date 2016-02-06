@@ -8,7 +8,15 @@
     </ul>
     <h2>Your personal details</h2>
     <ul *ngFor="#pd of personalDetails">
+        <h3>{{pd.date}}</h3>
         <li>Weight: {{pd.weight}}</li>
         <li>Bicep: {{pd.bicep}}</li>
+        <li>Neck: {{pd.neck}}</li>
+        <li>Waist: {{pd.waist}}</li>
+        <li>Hips: {{pd.hips}}</li>
+        <li>Thigh: {{pd.thigh}}</li>
+        <li>Resting Heart Rate: {{pd.resting_heart_rate}}</li>
+        <li>Calf: {{pd.calf}}</li>
+        <li>Chest: {{pd.chest}}</li>
     </ul>
 </cw-user-dashboard>
