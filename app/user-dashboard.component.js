@@ -41,6 +41,7 @@ System.register(['angular2/core', "./services/http.service", "./services/api.ser
                                 _this.userDashboardJSON = data.json(),
                                 _this.goals = _this.userDashboardJSON.goals,
                                 _this.personalDetails = _this.userDashboardJSON.personal_details,
+                                _this.workouts = _this.userDashboardJSON.workouts,
                                 _this.user = _this.userDashboardJSON.user,
                                 console.log(_this.userDashboardJSON);
                         }, function (err) { return reject(err); }, function () { return console.log("dashboard loaded!"); });

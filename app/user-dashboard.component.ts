@@ -16,6 +16,7 @@ export class UserDashboardComponent {
     apiService:APIService;
     goals:Array<Object>;
     personalDetails:Array<Object>;
+    workouts:Array<Object>;
     user:Object;
 
     constructor(private _http:HttpClient, private _apiService:APIService) {
@@ -34,6 +35,7 @@ export class UserDashboardComponent {
                         this.userDashboardJSON = data.json(),
                         this.goals = this.userDashboardJSON.goals,
                         this.personalDetails = this.userDashboardJSON.personal_details,
+                        this.workouts = this.userDashboardJSON.workouts,
                         this.user = this.userDashboardJSON.user,
                         console.log(this.userDashboardJSON)},
                     err => reject(err),
