@@ -37,11 +37,10 @@ export class InitialTestFormComponent {
                 .subscribe(
                     data => { this.initialTestData = data.json(),
                         this.initialTestWorkouts = this.initialTestData.initial_test.workouts,
-                        this.initialTestExerciseDetails = this.initialTestWorkouts[0].exercise_details,
-                        this.initialTestExercises = this.initialTestWorkouts[0].exercises
+                        this.initialTestExerciseDetails = this.initialTestWorkouts[0].exercise_details
                         },
                     err => reject(err),
-                    () => console.log("got the initial test!")
+                    () => console.log(this.initialTestData)
                 );
         })
     }
