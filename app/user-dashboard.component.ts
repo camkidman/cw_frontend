@@ -36,7 +36,7 @@ export class UserDashboardComponent {
                         this.goals = this.userDashboardJSON.goals,
                         this.personalDetails = this.userDashboardJSON.personal_details,
                         this.workouts = this.userDashboardJSON.workouts,
-                        this.user = this.userDashboardJSON.user,
+                        this.user = this.userDashboardJSON,
                         console.log(this.userDashboardJSON)},
                     err => reject(err),
                     () => console.log("dashboard loaded!")

@@ -44,8 +44,9 @@ System.register(['angular2/core', './services/api.service', './services/http.ser
                             .subscribe(function (data) {
                             _this.initialTestData = data.json(),
                                 _this.initialTestWorkouts = _this.initialTestData.initial_test.workouts,
+                                console.log(_this.initialTestData),
                                 _this.initialTestExerciseDetails = _this.initialTestWorkouts[0].exercise_details;
-                        }, function (err) { return reject(err); }, function () { return console.log(_this.initialTestData); });
+                        }, function (err) { return reject(err); }, function () { return console.log("initial test loaded"); });
                     });
                 };
                 InitialTestFormComponent.prototype.onSubmit = function (data) {
