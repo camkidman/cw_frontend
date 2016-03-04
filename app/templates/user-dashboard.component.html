@@ -20,15 +20,5 @@
         <li>Chest: {{pd.chest}}</li>
     </ul>
     <h2>Your Workouts</h2>
-    <ul *ngFor="#workout of workouts">
-      <div class="col-md-6">
-        <ul *ngFor="#exercise_detail of workout.exercise_details">
-          <h4>{{exercise_detail.exercise.name}}</h4>
-          <li>Reps: {{exercise_detail.reps}}</li>
-          <li>Sets: {{exercise_detail.sets}}</li>
-        </ul>
-      </div>
-
-      <hr />
-    </ul>
+      <dashboard-workout *ngFor="#workout of workouts" [workout]="workout"></dashboard-workout>
 </cw-user-dashboard>

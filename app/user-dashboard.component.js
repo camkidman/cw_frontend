@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./services/http.service", "./services/api.service"], function(exports_1) {
+System.register(['angular2/core', "./services/http.service", "./services/api.service", "./dashboard-workout.component"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', "./services/http.service", "./services/api.ser
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_service_1, api_service_1;
+    var core_1, http_service_1, api_service_1, dashboard_workout_component_1;
     var UserDashboardComponent;
     return {
         setters:[
@@ -20,6 +20,9 @@ System.register(['angular2/core', "./services/http.service", "./services/api.ser
             },
             function (api_service_1_1) {
                 api_service_1 = api_service_1_1;
+            },
+            function (dashboard_workout_component_1_1) {
+                dashboard_workout_component_1 = dashboard_workout_component_1_1;
             }],
         execute: function() {
             UserDashboardComponent = (function () {
@@ -52,7 +55,7 @@ System.register(['angular2/core', "./services/http.service", "./services/api.ser
                         selector: 'cw-user-dashboard',
                         templateUrl: 'app/templates/user-dashboard.component.html',
                         inputs: ['userDashboardJSON', 'goals', 'user'],
-                        providers: [http_service_1.HttpClient, api_service_1.APIService],
+                        providers: [http_service_1.HttpClient, api_service_1.APIService, dashboard_workout_component_1.DashboardWorkoutComponent],
                     }), 
                     __metadata('design:paramtypes', [http_service_1.HttpClient, api_service_1.APIService])
                 ], UserDashboardComponent);

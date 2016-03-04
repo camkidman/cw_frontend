@@ -1,12 +1,13 @@
 import {Component} from 'angular2/core';
 import {HttpClient} from "./services/http.service";
 import {APIService} from "./services/api.service";
+import {DashboardWorkoutComponent} from "./dashboard-workout.component";
 
 @Component({
     selector: 'cw-user-dashboard',
     templateUrl: 'app/templates/user-dashboard.component.html',
     inputs: ['userDashboardJSON', 'goals', 'user'],
-    providers: [HttpClient, APIService],
+    providers: [HttpClient, APIService, DashboardWorkoutComponent],
 })
 
 export class UserDashboardComponent {
