@@ -36,8 +36,8 @@ export class InitialTestFormComponent {
             this.http.get(`${this.apiService.baseUrl}/users/${this.userId}/initial_test`)
                 .subscribe(
                     data => { this.initialTestData = data.json(),
-                        this.initialTestWorkouts = this.initialTestData.initial_test.workouts,
                         console.log(this.initialTestData),
+                        this.initialTestWorkouts = this.initialTestData.workouts,
                         this.initialTestExerciseDetails = this.initialTestWorkouts[0].exercise_details
                         },
                     err => reject(err),
