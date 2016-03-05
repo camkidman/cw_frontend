@@ -20,5 +20,5 @@
         <li>Chest: {{pd.chest}}</li>
     </ul>
     <h2>Your Workouts</h2>
-      <dashboard-workout *ngFor="#workout of workouts" [workout]="workout"></dashboard-workout>
+      <dashboard-workout *ngFor="#workout of workouts" [workout]="workout" [workoutControlGroup]="workoutControlGroup"></dashboard-workout>
 </cw-user-dashboard>

@@ -1,13 +1,16 @@
 import {Component} from 'angular2/core';
 import {HttpClient} from "./services/http.service";
 import {APIService} from "./services/api.service";
+import {CORE_DIRECTIVES} from "angular2/common";
 import {DashboardWorkoutComponent} from "./dashboard-workout.component";
+import {ControlGroup, Control} from "angular2/common";
 
 @Component({
     selector: 'cw-user-dashboard',
     templateUrl: 'app/templates/user-dashboard.component.html',
     inputs: ['userDashboardJSON', 'goals', 'user'],
-    providers: [HttpClient, APIService, DashboardWorkoutComponent],
+    providers: [CORE_DIRECTIVES, HttpClient, APIService],
+    directives: [DashboardWorkoutComponent]
 })
 
 export class UserDashboardComponent {
@@ -19,6 +22,7 @@ export class UserDashboardComponent {
     personalDetails:Array<Object>;
     workouts:Array<Object>;
     user:Object;
+    workoutControlGroup = new ControlGroup({});
 
     constructor(private _http:HttpClient, private _apiService:APIService) {
         this.userId = localStorage.getItem("user_id");
@@ -40,7 +44,7 @@ export class UserDashboardComponent {
                         this.user = this.userDashboardJSON,
                         console.log(this.userDashboardJSON)},
                     err => reject(err),
-                    () => console.log("dashboard loaded!")
+                    () => console.log(this.workouts)
                 );
         })
     }
